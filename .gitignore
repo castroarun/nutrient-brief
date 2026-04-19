@@ -1,0 +1,31 @@
+# Credentials — never commit
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+
+# Node / tooling
+node_modules/
+dist/
+.next/
+.vercel/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs (runtime only; not editorial run_log.md which IS committed)
+*.log
+logs/*.log
+
+# Editor
+.vscode/
+.idea/
+*.swp

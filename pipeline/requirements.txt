@@ -1,0 +1,12 @@
+# Runtime deps for the pipeline
+python-dotenv==1.0.1         # .env loader
+requests==2.32.3             # HTTP client (Twilio + HEAD checks)
+pytrends==4.9.2              # Google Trends
+feedparser==6.0.11           # Reddit + Google News RSS
+biopython==1.84              # NCBI E-utilities (PubMed)
+anthropic==0.39.0            # Claude SDK - content generation
+playwright==1.48.0           # HTML -> PNG for IG carousels + HTML -> PDF for share card
+weasyprint==62.3             # Alt PDF renderer (fallback for share-card.pdf)
+pyyaml==6.0.2                # Manifest + pending queues
+gitpython==3.1.43            # Git commit + push from Python
+jinja2==3.1.4                # Template rendering if we go that route
