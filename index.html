@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Nutrient Brief</title>
+<meta name="description" content="A daily, mechanism-first nutrient digest. One nutrient. Published Mon–Sat at 5am IST.">
+<meta property="og:title" content="The Nutrient Brief">
+<meta property="og:description" content="A daily, mechanism-first nutrient digest. One nutrient. Evidence, mechanism, and who benefits — in under five minutes.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://castroarun.github.io/nutrient-brief/">
+<style>
+  :root {
+    --bg: #faf7f2;
+    --ink: #141623;
+    --muted: #5a5d6a;
+    --accent: #c7462d;
+    --rule: #e5e1d8;
+    --card: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Georgia, 'Times New Roman', serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  .eyebrow {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 11px;
+    letter-spacing: 2.2px;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  h1.masthead {
+    font-size: 42px;
+    line-height: 1.08;
+    margin: 0 0 14px 0;
+    letter-spacing: -0.5px;
+    font-weight: 700;
+  }
+  .tagline {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    color: var(--muted);
+    margin: 0 0 40px;
+    line-height: 1.55;
+  }
+  .divider {
+    height: 1px;
+    background: var(--rule);
+    margin: 0 0 36px;
+  }
+  h2.section {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 11px;
+    letter-spacing: 2.2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0 0 18px;
+  }
+  .edition {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 22px 24px;
+    margin-bottom: 14px;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .edition:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+  .edition .row1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .edition .row1 .label {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .edition h3 {
+    font-size: 22px;
+    line-height: 1.25;
+    margin: 0 0 10px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+  }
+  .edition .anchor {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin: 0;
+    font-style: italic;
+  }
+  .coming-soon {
+    border: 1px dashed var(--rule);
+    border-radius: 4px;
+    padding: 22px 24px;
+    color: var(--muted);
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+    text-align: center;
+  }
+  footer {
+    margin-top: 64px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .disclaimer {
+    margin-top: 14px;
+    font-size: 11px;
+    color: var(--muted);
+    opacity: 0.85;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">The Nutrient Brief</div>
+  <h1 class="masthead">One nutrient. Evidence, mechanism, and who benefits.</h1>
+  <p class="tagline">A daily, mechanism-first nutrient digest. Paraphrased from doctors who've published on it. Three minutes to read, one week to remember. Published Monday through Saturday at 5am IST.</p>
+  <div class="divider"></div>
+
+  <h2 class="section">Latest Editions</h2>
+
+  <a class="edition" href="content/editions/001_magnesium-glycinate/share-card.html">
+    <div class="row1">
+      <span class="label">Edition 001 · Mineral of the Week</span>
+      <span>21 Apr 2026</span>
+    </div>
+    <h3>Magnesium Glycinate — your nervous system's volume knob</h3>
+    <p class="anchor">"Magnesium is your nervous system's volume knob — turn it too low, and everything feels louder than it is."</p>
+  </a>
+
+  <div class="coming-soon">Edition 002 lands tomorrow, 5am IST.</div>
+
+  <footer>
+    <div>
+      Follow: <a href="https://instagram.com/nutrientbrief">@nutrientbrief</a> ·
+      Deep dives: <a href="https://github.com/castroarun/nutrient-brief/tree/main/content/editions">github</a>
+    </div>
+    <div class="disclaimer">
+      Not medical advice. Educational content only. Not intended to diagnose, treat, cure, or prevent any disease.
+      Consult a qualified medical professional before starting, changing, or stopping any supplement.
+    </div>
+  </footer>
+</div>
+</body>
+</html>

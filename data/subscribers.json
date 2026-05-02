@@ -1,0 +1,19 @@
+{
+  "_comment": "Email broadcast list. The daily orchestrator sends each new edition to every subscriber whose status is 'active'. Add new subscribers by appending objects to the array — no schema migration needed.",
+  "_schema_version": 1,
+  "_how_to_add": [
+    "1. Append { email, name, joined_at, status: 'active' } to the array",
+    "2. git commit + push",
+    "3. The next cron run picks up the new list automatically",
+    "4. Set status: 'unsubscribed' instead of deleting — preserves history"
+  ],
+  "subscribers": [
+    {
+      "email": "arun.castromin@gmail.com",
+      "name": "Arun (publisher)",
+      "joined_at": "2026-04-21",
+      "status": "active",
+      "source": "founder"
+    }
+  ]
+}

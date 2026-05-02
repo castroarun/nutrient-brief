@@ -1,98 +1,111 @@
-"""
-Delivery layer: WhatsApp (Twilio), Substack, Instagram.
+"""URL-resolution + manifest-update layer for The Nutrient Brief.
 
-All functions here follow the failure-isolation rule from PIPELINE_SPEC.md section 8:
-- Website-related failures degrade silently and fall back to GitHub URLs.
-- Delivery failures retry-then-queue-for-next-run; they never abort the edition.
-- Only the canonical git push (in commit.py) is allowed to be fatal.
+Delivery to channels (email, WhatsApp) is handled by separate modules
+(`email_delivery.py`, `whatsapp_delivery.py`) — this module's only job is to
+figure out which URLs are reachable right now and stamp them into the manifest.
+
+Graceful degradation (§8 of PIPELINE_SPEC.md):
+  Tier 1  branded site   https://nutrientbrief.in/editions/NNN-slug
+  Tier 2  GitHub Pages   https://castroarun.github.io/nutrient-brief/...
+  Tier 3  GitHub blob    https://github.com/castroarun/nutrient-brief/...
+
+Tier 2 is always available because the repo push triggers a Pages redeploy —
+editions are live at a predictable URL within ~60s of commit.
 """
 from __future__ import annotations
-import time
-import requests
+
+import json
+from dataclasses import dataclass
+from pathlib import Path
 from typing import Optional
-from . import config
+from urllib.error import URLError
+from urllib.request import Request, urlopen
+
+REPO = "castroarun/nutrient-brief"
+BRANDED_HOST = "nutrientbrief.in"
+PAGES_HOST = "castroarun.github.io"
 
 
-# Deep-dive URL resolver: tries the branded site, falls back to GitHub blob.
-def resolve_deep_dive_url(edition_id: str, slug: str, timeout: float = 5.0) -> str:
-    """HEAD-check the branded URL. Fall back to GitHub blob if non-200."""
-    branded = config.site_deep_dive_url(edition_id, slug)
+@dataclass
+class EditionURLs:
+    """Full URL set for a published edition. Callers pick which to share."""
+    branded_site: str          # Tier 1 (may be offline)
+    github_pages: str          # Tier 2 (always up after push)
+    github_blob_md: str        # Tier 3 (raw deep-dive markdown view)
+    share_card_pdf_raw: str    # Direct PDF download
+    primary: str               # Best URL we could verify right now
+
+
+def _edition_folder(edition_id: str, slug: str) -> str:
+    """Canonical folder name: 001_magnesium-glycinate"""
+    return f"{edition_id}_{slug}"
+
+
+def _is_reachable(url: str, timeout: float = 3.0) -> bool:
     try:
-        r = requests.head(branded, timeout=timeout, allow_redirects=True)
-        if r.status_code == 200:
-            return branded
-    except requests.RequestException:
-        pass
-    # Fallback - always works because git push already succeeded
-    return config.github_blob_url(edition_id, slug, "deep-dive.md")
+        req = Request(url, method="HEAD")
+        with urlopen(req, timeout=timeout) as resp:
+            return 200 <= resp.status < 400
+    except (URLError, TimeoutError, Exception):
+        return False
 
 
-# GitHub-raw propagation wait: after a push, the raw URL takes a few seconds
-# to become fetchable by Twilio's media fetcher.
-def wait_for_raw_availability(
-    edition_id: str, slug: str, filename: str = "share-card.pdf",
-    attempts: int = 3, backoff_seconds: int = 10,
-) -> bool:
-    url = config.raw_github_url(edition_id, slug, filename)
-    for i in range(attempts):
-        try:
-            r = requests.head(url, timeout=10, allow_redirects=True)
-            if r.status_code == 200:
-                return True
-        except requests.RequestException:
-            pass
-        if i < attempts - 1:
-            time.sleep(backoff_seconds * (i + 1))
-    return False
+def resolve_urls(edition_id: str, slug: str) -> EditionURLs:
+    """Build the full URL set; pick best currently-reachable as primary."""
+    folder = _edition_folder(edition_id, slug)
+    branded = f"https://{BRANDED_HOST}/editions/{edition_id}-{slug}"
+    pages = f"https://{PAGES_HOST}/nutrient-brief/content/editions/{folder}/share-card.html"
+    blob_md = f"https://github.com/{REPO}/blob/main/content/editions/{folder}/deep-dive.md"
+    pdf_raw = f"https://raw.githubusercontent.com/{REPO}/main/content/editions/{folder}/share-card.pdf"
 
+    if _is_reachable(branded):
+        primary = branded
+    elif _is_reachable(pages):
+        primary = pages
+    else:
+        primary = blob_md
 
-# WhatsApp send via Twilio. Retry up to 3x with exponential backoff.
-# Returns (ok, sid_or_error).
-def send_whatsapp(
-    edition_id: str, slug: str, topic: str, anchor_line: str,
-) -> tuple[bool, str]:
-    deep_dive_url = resolve_deep_dive_url(edition_id, slug)
-    media_url     = config.raw_github_url(edition_id, slug, "share-card.pdf")
-
-    body = (
-        f"Edition {edition_id}: {topic}.\n"
-        f"Deep-dive: {deep_dive_url}\n"
-        f"Memory anchor: \"{anchor_line}\""
+    return EditionURLs(
+        branded_site=branded,
+        github_pages=pages,
+        github_blob_md=blob_md,
+        share_card_pdf_raw=pdf_raw,
+        primary=primary,
     )
 
-    endpoint = (
-        f"https://api.twilio.com/2010-04-01/Accounts/"
-        f"{config.TWILIO_ACCOUNT_SID}/Messages.json"
-    )
-    payload = {
-        "From":     config.TWILIO_FROM_WHATSAPP,
-        "To":       config.ARUN_WHATSAPP,
-        "Body":     body,
-        "MediaUrl": media_url,
+
+def update_manifest_urls(manifest_path: Path, urls: EditionURLs) -> None:
+    """Stamp resolved URLs into manifest.json (preserving everything else)."""
+    m = json.loads(manifest_path.read_text(encoding="utf-8"))
+    m["urls"] = {
+        "site": urls.branded_site,
+        "github_pages": urls.github_pages,
+        "github_blob": urls.github_blob_md,
+        "share_card_pdf_raw": urls.share_card_pdf_raw,
+        "primary_resolved": urls.primary,
     }
-    auth = (config.TWILIO_ACCOUNT_SID, config.TWILIO_AUTH_TOKEN)
-
-    for attempt in range(3):
-        try:
-            r = requests.post(endpoint, auth=auth, data=payload, timeout=30)
-            if r.status_code in (200, 201):
-                return True, r.json().get("sid", "")
-            err = f"HTTP {r.status_code}: {r.text[:200]}"
-        except requests.RequestException as e:
-            err = str(e)
-        if attempt < 2:
-            time.sleep(10 * (2 ** attempt))   # 10s, 30s, 60s
-    return False, err  # type: ignore[return-value]
+    m.setdefault("published_to", {})
+    m["published_to"]["github_pages"] = urls.github_pages
+    manifest_path.write_text(json.dumps(m, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
-# Stubs - implement when wiring Substack + Buffer/Meta.
-def post_to_substack(edition_id: str, slug: str) -> tuple[bool, str]:
-    # TODO: call Substack API with deep-dive.md body + embedded share-card.
-    # On failure -> queue file in content/pending_substack/<edition_id>.yaml
-    return False, "not_implemented"
+def publish_edition(edition_dir: Path, whatsapp_to: Optional[str] = None) -> EditionURLs:
+    """Entry point used by run_edition.py. Resolves URLs and updates manifest.
+
+    The `whatsapp_to` arg is kept for backwards compatibility with older callers
+    but is intentionally ignored — WhatsApp is now handled by whatsapp_delivery.py.
+    """
+    manifest_path = edition_dir / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+
+    urls = resolve_urls(manifest["edition_id"], manifest["slug"])
+    print(f"[publish] primary URL → {urls.primary}")
+    update_manifest_urls(manifest_path, urls)
+    print(f"[publish] manifest updated · {manifest_path}")
+    return urls
 
 
-def schedule_instagram(edition_id: str, slug: str) -> tuple[bool, str]:
-    # TODO: call Buffer/Meta API with 4 PNGs from assets/<edition_id>/.
-    # On failure -> queue in content/pending_ig/<edition_id>/
-    return False, "not_implemented"
+if __name__ == "__main__":
+    import sys
+    target = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("content/editions/001_magnesium-glycinate")
+    publish_edition(target)
