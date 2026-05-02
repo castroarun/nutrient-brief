@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magnesium Glycinate — The Nutrient Brief</title>
+  <style>
+    :root {
+      --bg: #faf7f2;
+      --ink: #141623;
+      --navy: #1e3a8a;
+      --accent: #c7462d;
+      --accent-soft: #f4d5cb;
+      --accent-tint: #fbeae3;
+      --muted: #6e6b63;
+      --rule: #d9d4c9;
+      --ok: #3f7d58;
+      --mid: #d1932c;
+      --weak: #a36f6f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: var(--bg); color: var(--ink); }
+    body {
+      font-family: -apple-system, "SF Pro Text", "Inter", system-ui, sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      padding: 32px 20px 80px;
+    }
+
+    /* Category eyebrow — navy pill, e.g. "MINERAL OF THE WEEK" */
+    .eyebrow {
+      display: inline-block;
+      background: var(--navy);
+      color: #f5ecd7;
+      padding: 8px 18px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .page { max-width: 640px; margin: 0 auto; }
+
+    .masthead {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-top: 2px solid var(--ink);
+      padding: 10px 0 0;
+      margin-bottom: 36px;
+    }
+    .masthead .title {
+      font-family: Georgia, "Iowan Old Style", serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+    }
+    .masthead .meta {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    h1 {
+      font-family: Georgia, "Iowan Old Style", serif;
+      font-size: 46px;
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin-bottom: 18px;
+    }
+    h1 .em { color: var(--accent); font-style: italic; }
+    .deck {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 44px;
+      line-height: 1.5;
+      max-width: 520px;
+    }
+
+    section {
+      padding: 32px 0;
+      border-top: 1px solid var(--rule);
+    }
+    .kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-family: Georgia, serif;
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 1.22;
+      margin-bottom: 16px;
+    }
+    p { font-size: 16px; line-height: 1.62; }
+
+    /* Stat */
+    .stat {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+    .stat .num {
+      font-family: Georgia, serif;
+      font-size: 72px;
+      line-height: 1;
+      color: var(--accent);
+      font-weight: 400;
+    }
+    .stat .num .pct {
+      font-size: 36px;
+      vertical-align: top;
+      margin-left: 2px;
+    }
+
+    /* Mechanism */
+    .mech-visual {
+      display: flex; gap: 12px;
+      margin: 20px 0 10px;
+      align-items: stretch;
+    }
+    .mech-pill {
+      flex: 1;
+      border: 1px solid var(--rule);
+      background: #fff;
+      padding: 14px 16px;
+      border-radius: 4px;
+    }
+    .mech-pill .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .mech-pill .val {
+      font-family: Georgia, serif;
+      font-size: 20px;
+      line-height: 1.25;
+    }
+
+    /* Evidence + absorption bars (shared) */
+    .evidence-row, .form-row {
+      display: grid;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px dotted var(--rule);
+    }
+    .evidence-row { grid-template-columns: 1fr 110px; font-size: 15px; }
+    .form-row { grid-template-columns: 118px 68px 86px 1fr; font-size: 14px; }
+    .form-row .form-pct {
+      font-family: Georgia, serif;
+      font-size: 15px;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .evidence-row:last-child, .form-row:last-child { border-bottom: none; }
+    .bar { display: flex; gap: 3px; }
+    .dot {
+      width: 16px; height: 10px;
+      background: var(--rule);
+      border-radius: 1px;
+    }
+    .dot.on-strong { background: var(--ok); }
+    .dot.on-mid { background: var(--mid); }
+    .dot.on-weak { background: var(--weak); }
+
+    /* Forms table */
+    .form-row .form-name {
+      font-family: Georgia, serif;
+      font-size: 16px;
+    }
+    .form-row .form-desc {
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    /* Amounts callout */
+    .amounts {
+      margin-top: 18px;
+      padding: 14px 18px;
+      background: var(--accent-tint);
+      border-left: 3px solid var(--accent);
+      border-radius: 2px;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .amounts strong { color: var(--accent); }
+
+    /* Grid cards (used for benefit + caution) */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .card-small {
+      padding: 14px 16px;
+      border: 1px solid var(--rule);
+      background: #fff;
+      border-radius: 4px;
+    }
+    .card-small .c-head {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .card-small.benefit .c-head { color: var(--ok); }
+    .card-small.caution .c-head { color: var(--accent); }
+    .card-small .c-body {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Doctor quote */
+    .doctor {
+      margin-top: 20px;
+      padding: 26px 26px 22px;
+      background: var(--accent-tint);
+      border-left: 3px solid var(--accent);
+      border-radius: 2px;
+    }
+    .doctor blockquote {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 19px;
+      line-height: 1.45;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+    .doctor .attrib {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .doctor .attrib strong { color: var(--ink); }
+    .doctor .note {
+      font-size: 11px;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 8px;
+      opacity: 0.8;
+    }
+
+    /* Memory anchor */
+    .anchor {
+      margin-top: 30px;
+      padding: 48px 28px;
+      background: var(--ink);
+      color: var(--bg);
+      border-radius: 4px;
+      text-align: center;
+    }
+    .anchor .anchor-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      opacity: 0.6;
+      margin-bottom: 22px;
+    }
+    .anchor blockquote {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 26px;
+      line-height: 1.35;
+      max-width: 460px;
+      margin: 0 auto;
+    }
+    .anchor .knob { margin: 18px auto 22px; display: block; }
+
+    footer {
+      margin-top: 48px;
+      padding-top: 22px;
+      border-top: 2px solid var(--ink);
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    footer p { font-size: 12px; }
+    footer .sources { margin-bottom: 14px; }
+    footer .disclaimer { font-style: italic; }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 36px; }
+      .stat { grid-template-columns: 1fr; gap: 12px; }
+      .stat .num { font-size: 60px; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .mech-visual { flex-direction: column; }
+      .form-row { grid-template-columns: 1fr; gap: 4px; }
+      .form-row .form-name { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="title">The Nutrient Brief</div>
+    <div class="meta">Edition 01 · Micro</div>
+  </header>
+
+  <span class="eyebrow">Mineral of the week</span>
+  <h1>Magnesium Glycinate &nbsp;—&nbsp; your nervous system's <span class="em">volume knob</span>.</h1>
+  <p class="deck">Roughly half of adults don't get enough magnesium from diet. Here's what it actually does in your body, what the evidence really supports, and who tends to run low.</p>
+
+  <!-- Gap -->
+  <section>
+    <div class="kicker">The gap</div>
+    <div class="stat">
+      <div class="num">~50<span class="pct">%</span></div>
+      <p>of adults fall short on dietary magnesium. It's a cofactor in more than <strong>300</strong> enzymatic reactions — from muscle contraction to nerve signaling to how your cells generate energy.</p>
+    </div>
+  </section>
+
+  <!-- Mechanism -->
+  <section>
+    <div class="kicker">How it works</div>
+    <h2>Brakes and accelerators, in the brain.</h2>
+    <div class="mech-visual" aria-hidden="true">
+      <div class="mech-pill">
+        <div class="label">Accelerator</div>
+        <div class="val">NMDA receptors &mdash; magnesium keeps them regulated.</div>
+      </div>
+      <div class="mech-pill">
+        <div class="label">Brake</div>
+        <div class="val">GABA activity &mdash; magnesium helps activate it.</div>
+      </div>
+    </div>
+    <p style="margin-top:14px; color:var(--muted);">Low magnesium means weaker brakes <em>and</em> louder accelerator at the same time. That's why the classic symptoms cluster around jumpiness — poor sleep, anxiety, muscle twitches, migraines.</p>
+  </section>
+
+  <!-- Evidence -->
+  <section>
+    <div class="kicker">What the evidence says</div>
+    <h2>Strong where it counts, weak where it's hyped.</h2>
+    <div style="margin-top:16px;">
+      <div class="evidence-row">
+        <span>Sleep quality, older adults</span>
+        <span class="bar"><span class="dot on-strong"></span><span class="dot on-strong"></span><span class="dot on-strong"></span><span class="dot on-strong"></span><span class="dot"></span></span>
+      </div>
+      <div class="evidence-row">
+        <span>Blood pressure (~2–3 mmHg)</span>
+        <span class="bar"><span class="dot on-strong"></span><span class="dot on-strong"></span><span class="dot on-strong"></span><span class="dot"></span><span class="dot"></span></span>
+      </div>
+      <div class="evidence-row">
+        <span>Migraine prevention</span>
+        <span class="bar"><span class="dot on-mid"></span><span class="dot on-mid"></span><span class="dot on-mid"></span><span class="dot"></span><span class="dot"></span></span>
+      </div>
+      <div class="evidence-row">
+        <span>Anxiety (small trials)</span>
+        <span class="bar"><span class="dot on-mid"></span><span class="dot on-mid"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+      </div>
+      <div class="evidence-row">
+        <span>Athletic performance, "energy"</span>
+        <span class="bar"><span class="dot on-weak"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who tends to benefit -->
+  <section>
+    <div class="kicker">Most likely to be running low</div>
+    <h2>Who tends to benefit most.</h2>
+    <p style="color:var(--muted); font-size:14px; margin-bottom:4px;">The people whose baseline is most likely below the sufficiency line — so correction tends to show the biggest benefit.</p>
+    <div class="grid-2">
+      <div class="card-small benefit">
+        <div class="c-head">Adults 60+</div>
+        <div class="c-body">Absorption efficiency declines with age; intake often drops too.</div>
+      </div>
+      <div class="card-small benefit">
+        <div class="c-head">Long-term PPI users</div>
+        <div class="c-body">Omeprazole, pantoprazole &amp; others deplete magnesium over months.</div>
+      </div>
+      <div class="card-small benefit">
+        <div class="c-head">Type 2 diabetes &amp; prediabetes</div>
+        <div class="c-body">Higher urinary magnesium loss; gap compounds with insulin resistance.</div>
+      </div>
+      <div class="card-small benefit">
+        <div class="c-head">Refined-cereal diets</div>
+        <div class="c-body">Common in urban India; whole grains &amp; leafy greens are the missing source.</div>
+      </div>
+      <div class="card-small benefit">
+        <div class="c-head">Resistance trainers &amp; endurance athletes</div>
+        <div class="c-body">Sweat loss + heavy use in muscle contraction and recovery; training volume raises need.</div>
+      </div>
+      <div class="card-small benefit">
+        <div class="c-head">Chronic stress / poor sleepers</div>
+        <div class="c-body">Sustained stress increases urinary excretion; low mag in turn worsens sleep.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Forms, amounts, absorption -->
+  <section>
+    <div class="kicker">Forms &amp; amounts</div>
+    <h2>Not all forms absorb the same.</h2>
+    <div style="margin-top:14px;">
+      <div class="form-row">
+        <span class="form-name">Glycinate</span>
+        <span class="bar"><span class="dot on-strong"></span><span class="dot on-strong"></span><span class="dot on-strong"></span><span class="dot on-strong"></span><span class="dot"></span></span>
+        <span class="form-pct">~25–35%</span>
+        <span class="form-desc">High absorption, gentle on the gut. Commonly chosen for sleep &amp; anxiety use cases.</span>
+      </div>
+      <div class="form-row">
+        <span class="form-name">Citrate</span>
+        <span class="bar"><span class="dot on-strong"></span><span class="dot on-strong"></span><span class="dot on-strong"></span><span class="dot"></span><span class="dot"></span></span>
+        <span class="form-pct">~25–30%</span>
+        <span class="form-desc">Good absorption, mildly laxative at higher doses (sometimes the point, sometimes unwanted).</span>
+      </div>
+      <div class="form-row">
+        <span class="form-name">L-Threonate</span>
+        <span class="bar"><span class="dot on-mid"></span><span class="dot on-mid"></span><span class="dot on-mid"></span><span class="dot"></span><span class="dot"></span></span>
+        <span class="form-pct">~20–25%</span>
+        <span class="form-desc">Crosses the blood-brain barrier more readily. Cognitive/sleep focus. More expensive.</span>
+      </div>
+      <div class="form-row">
+        <span class="form-name">Oxide</span>
+        <span class="bar"><span class="dot on-weak"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+        <span class="form-pct">~4%</span>
+        <span class="form-desc">Cheap &amp; common in mass-market supplements; mostly passes through.</span>
+      </div>
+    </div>
+    <div class="amounts">
+      <strong>Dietary reference:</strong> ~310–420 mg of elemental magnesium per day for adults (varies by sex &amp; age; ICMR / NIH ranges). <br>
+      <strong>Trial ranges:</strong> studies on sleep, blood pressure, and migraine typically used <strong>200–400 mg elemental</strong> per day of a well-absorbed form. Splitting doses (morning + evening) improves tolerance.
+    </div>
+  </section>
+
+  <!-- Who should think twice -->
+  <section>
+    <div class="kicker">Before you consider it</div>
+    <h2>Who should think twice.</h2>
+    <div class="grid-2">
+      <div class="card-small caution">
+        <div class="c-head">Kidney disease</div>
+        <div class="c-body">Impaired kidneys can't clear excess — high intake becomes genuinely dangerous.</div>
+      </div>
+      <div class="card-small caution">
+        <div class="c-head">Certain antibiotics</div>
+        <div class="c-body">Fluoroquinolones &amp; tetracyclines — space doses apart to avoid absorption interference.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Doctor's voice -->
+  <section>
+    <div class="kicker">Expert context</div>
+    <h2>An Indian clinician's view.</h2>
+    <div class="doctor">
+      <blockquote>
+        &ldquo;Urban Indians on refined-cereal diets often fall short on magnesium &mdash; and for someone with prediabetes or type 2 diabetes, that gap matters more, because higher urinary magnesium loss compounds with insulin resistance.&rdquo;
+      </blockquote>
+      <div class="attrib">
+        — Paraphrased from the published research of <strong>Dr. V. Mohan</strong>, Chairman, Madras Diabetes Research Foundation (MDRF), Chennai. &nbsp;MD, PhD, FRCP; 600+ peer-reviewed publications on Indian diabetes &amp; nutrition.
+      </div>
+      <div class="note">Paraphrased, not a direct quote. Live pipeline verifies exact wording against published work before publish.</div>
+    </div>
+  </section>
+
+  <!-- Memory anchor -->
+  <div class="anchor">
+    <div class="anchor-label">&mdash; Memory anchor &mdash;</div>
+    <svg class="knob" width="86" height="86" viewBox="0 0 86 86" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g stroke="#faf7f2" stroke-width="1.5" stroke-linecap="round" opacity="0.7">
+        <line x1="43" y1="6" x2="43" y2="11"/>
+        <line x1="20.5" y1="14.5" x2="23.3" y2="18.7"/>
+        <line x1="7.5" y1="34" x2="12" y2="35.5"/>
+        <line x1="7.5" y1="52" x2="12" y2="50.5"/>
+        <line x1="20.5" y1="71.5" x2="23.3" y2="67.3"/>
+        <line x1="43" y1="80" x2="43" y2="75"/>
+        <line x1="65.5" y1="71.5" x2="62.7" y2="67.3"/>
+        <line x1="78.5" y1="52" x2="74" y2="50.5"/>
+        <line x1="78.5" y1="34" x2="74" y2="35.5"/>
+        <line x1="65.5" y1="14.5" x2="62.7" y2="18.7"/>
+      </g>
+      <circle cx="43" cy="43" r="28" stroke="#faf7f2" stroke-width="2" fill="none" opacity="0.5"/>
+      <circle cx="43" cy="43" r="22" fill="#c7462d"/>
+      <line x1="43" y1="43" x2="43" y2="26" stroke="#faf7f2" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="43" cy="43" r="3" fill="#faf7f2"/>
+    </svg>
+    <blockquote>
+      &ldquo;Magnesium is your nervous system's volume knob. Turn it too low, and everything feels louder than it is.&rdquo;
+    </blockquote>
+  </div>
+
+  <footer>
+    <p class="sources"><strong>Sources:</strong> Abbasi et al. 2012, <em>J Res Med Sci</em> · de Baaij et al. 2015, <em>Physiol Rev</em> · DiNicolantonio et al. 2018, <em>Open Heart</em> · Zhang et al. 2016, <em>Hypertension</em> · Cochrane Database · ICMR Dietary Guidelines for Indians · research publications of MDRF / V. Mohan.</p>
+    <p class="disclaimer"><strong>Not medical advice.</strong> Educational content only. Not intended to diagnose, treat, cure, or prevent any disease. Consult a qualified medical professional before starting, changing, or stopping any supplement — especially if you have kidney issues or take prescription medication.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
