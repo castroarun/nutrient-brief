@@ -75,13 +75,17 @@ jobs:
         run: |
           git config user.name  "nutrient-brief-bot"
           git config user.email "bot@nutrientbrief.in"
-          if git diff --quiet && git diff --cached --quiet; then
+          # Stage everything FIRST (incl. untracked new-edition folders),
+          # THEN check if anything is now staged. Old version checked before
+          # staging and missed all untracked files — silently skipped commits.
+          git add -A
+          if git diff --cached --quiet; then
             echo "No changes — nothing to commit."
             exit 0
           fi
-          git add -A
           git commit -m "edition: automated publish $(date -u +%Y-%m-%d)"
           git push origin HEAD:main
+          echo "Pushed."
 
       - name: Append to run log
         if: ${{ always() }}
