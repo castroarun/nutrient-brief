@@ -1,0 +1,79 @@
+{
+  "edition_id": "004",
+  "slug": "vitamin-b12-cobalamin",
+  "title": "Vitamin B12 — Your Nerves and Your DNA Need It",
+  "category": "vitamin",
+  "day_of_week": "Friday",
+  "eyebrow_label": "VITAMIN OF THE WEEK",
+  "accent_color": "#7c3aed",
+  "published_at": "2026-05-05T00:13:50.084988+00:00",
+  "memory_anchor": "Vitamin B12 — Your nerves and your DNA need it, and if you don't eat animal foods, your body has no plan B.",
+  "lane": "curated_backlog",
+  "trend_override": false,
+  "doctor": {
+    "name": "Dr. Anoop Misra",
+    "institution": "Fortis C-DOC, New Delhi",
+    "credentials": "MD, DM, FRCP",
+    "publications": "700+",
+    "specialty_match": "Indian dietary deficiencies"
+  },
+  "sources": [
+    {
+      "id": 1,
+      "pubmed_id": "20428086",
+      "tier": 2
+    },
+    {
+      "id": 2,
+      "pubmed_id": "21158127",
+      "tier": 2
+    },
+    {
+      "id": 3,
+      "pubmed_id": "30293048",
+      "tier": 2
+    }
+  ],
+  "tags": [
+    "vitamin",
+    "vegetarian-gap",
+    "neuropathy",
+    "fatigue"
+  ],
+  "compliance_checks": {
+    "no_disease_claims": true,
+    "no_product_brands": true,
+    "no_personal_dosing": true,
+    "doctor_verified": true,
+    "sources_resolved": true,
+    "anchor_unique": true,
+    "disclaimer_present": true
+  },
+  "artifacts": {
+    "deep_dive_md": "deep-dive.md",
+    "share_card_html": "share-card.html",
+    "share_card_pdf": "share-card.pdf",
+    "carousel_html": [
+      "carousel/slide_01.html",
+      "carousel/slide_02.html",
+      "carousel/slide_03.html",
+      "carousel/slide_04.html"
+    ],
+    "carousel_png": [
+      "assets/slide_01.png",
+      "assets/slide_02.png",
+      "assets/slide_03.png",
+      "assets/slide_04.png"
+    ]
+  },
+  "urls": {},
+  "published_to": {
+    "substack": null,
+    "site": null,
+    "github_pages": null,
+    "instagram_post_id": null,
+    "instagram_scheduled_at": null,
+    "whatsapp_message_sids": [],
+    "email_recipients": 1
+  }
+}
