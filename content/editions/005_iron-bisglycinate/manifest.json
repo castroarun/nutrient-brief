@@ -1,0 +1,79 @@
+{
+  "edition_id": "005",
+  "slug": "iron-bisglycinate",
+  "title": "Iron-Bisglycinate — Half of Indian Women Running on Low-Octane Blood",
+  "category": "mineral",
+  "day_of_week": "Saturday",
+  "eyebrow_label": "MINERAL OF THE WEEK",
+  "accent_color": "#b91c1c",
+  "published_at": "2026-05-06T00:11:19.299826+00:00",
+  "memory_anchor": "Iron-bisglycinate — half of Indian women running on low-octane blood.",
+  "lane": "curated_backlog",
+  "trend_override": false,
+  "doctor": {
+    "name": "Dr. Tinku Joseph",
+    "institution": "Amrita Institute, Kochi",
+    "credentials": "MD, DM",
+    "publications": "100+",
+    "specialty_match": "anemia and women's health"
+  },
+  "sources": [
+    {
+      "id": 1,
+      "pubmed_id": "32238156",
+      "tier": 2
+    },
+    {
+      "id": 2,
+      "pubmed_id": "29282091",
+      "tier": 2
+    },
+    {
+      "id": 3,
+      "pubmed_id": "32238156",
+      "tier": 2
+    }
+  ],
+  "tags": [
+    "mineral",
+    "women-health",
+    "anemia",
+    "indian-public-health"
+  ],
+  "compliance_checks": {
+    "no_disease_claims": true,
+    "no_product_brands": true,
+    "no_personal_dosing": true,
+    "doctor_verified": true,
+    "sources_resolved": true,
+    "anchor_unique": true,
+    "disclaimer_present": true
+  },
+  "artifacts": {
+    "deep_dive_md": "deep-dive.md",
+    "share_card_html": "share-card.html",
+    "share_card_pdf": "share-card.pdf",
+    "carousel_html": [
+      "carousel/slide_01.html",
+      "carousel/slide_02.html",
+      "carousel/slide_03.html",
+      "carousel/slide_04.html"
+    ],
+    "carousel_png": [
+      "assets/slide_01.png",
+      "assets/slide_02.png",
+      "assets/slide_03.png",
+      "assets/slide_04.png"
+    ]
+  },
+  "urls": {},
+  "published_to": {
+    "substack": null,
+    "site": null,
+    "github_pages": null,
+    "instagram_post_id": null,
+    "instagram_scheduled_at": null,
+    "whatsapp_message_sids": [],
+    "email_recipients": 1
+  }
+}
