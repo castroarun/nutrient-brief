@@ -1,0 +1,79 @@
+{
+  "edition_id": "009",
+  "slug": "vitamin-k2-mk7",
+  "title": "Vitamin K2 — the traffic cop for calcium",
+  "category": "vitamin",
+  "day_of_week": "Friday",
+  "eyebrow_label": "VITAMIN OF THE WEEK",
+  "accent_color": "#dc2626",
+  "published_at": "2026-05-12T01:15:52.643747+00:00",
+  "memory_anchor": "Vitamin K2 is the traffic cop that tells calcium to go to your bones, not your arteries — and most calcium supplements forget to invite it.",
+  "lane": "curated_backlog",
+  "trend_override": false,
+  "doctor": {
+    "name": "Dr. Naresh Trehan",
+    "institution": "Medanta, Gurugram",
+    "credentials": "MD (Cardiothoracic Surgery)",
+    "publications": "200+",
+    "specialty_match": "vascular calcification"
+  },
+  "sources": [
+    {
+      "id": 1,
+      "pubmed_id": "25694382",
+      "tier": 2
+    },
+    {
+      "id": 2,
+      "pubmed_id": "21155624",
+      "tier": 2
+    },
+    {
+      "id": 3,
+      "pubmed_id": "32237771",
+      "tier": 2
+    }
+  ],
+  "tags": [
+    "vitamin",
+    "bone",
+    "vascular",
+    "calcium-paradox"
+  ],
+  "compliance_checks": {
+    "no_disease_claims": true,
+    "no_product_brands": true,
+    "no_personal_dosing": true,
+    "doctor_verified": true,
+    "sources_resolved": true,
+    "anchor_unique": true,
+    "disclaimer_present": true
+  },
+  "artifacts": {
+    "deep_dive_md": "deep-dive.md",
+    "share_card_html": "share-card.html",
+    "share_card_pdf": "share-card.pdf",
+    "carousel_html": [
+      "carousel/slide_01.html",
+      "carousel/slide_02.html",
+      "carousel/slide_03.html",
+      "carousel/slide_04.html"
+    ],
+    "carousel_png": [
+      "assets/slide_01.png",
+      "assets/slide_02.png",
+      "assets/slide_03.png",
+      "assets/slide_04.png"
+    ]
+  },
+  "urls": {},
+  "published_to": {
+    "substack": null,
+    "site": null,
+    "github_pages": null,
+    "instagram_post_id": null,
+    "instagram_scheduled_at": null,
+    "whatsapp_message_sids": [],
+    "email_recipients": 1
+  }
+}
