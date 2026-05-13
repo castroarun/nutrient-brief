@@ -1,0 +1,79 @@
+{
+  "edition_id": "010",
+  "slug": "selenium-selenomethionine",
+  "title": "Selenium-Selenomethionine — the iodine enabler",
+  "category": "mineral",
+  "day_of_week": "Saturday",
+  "eyebrow_label": "MINERAL OF THE WEEK",
+  "accent_color": "#0d9488",
+  "published_at": "2026-05-13T01:23:22.053807+00:00",
+  "memory_anchor": "Selenium is what lets your thyroid actually use the iodine you eat — and Indian soil ran out of it generations ago.",
+  "lane": "curated_backlog",
+  "trend_override": false,
+  "doctor": {
+    "name": "Dr. Ambrish Mithal",
+    "institution": "Max Healthcare, Delhi",
+    "credentials": "MD, DM (Endocrinology)",
+    "publications": "300+",
+    "specialty_match": "thyroid and metabolic endocrinology"
+  },
+  "sources": [
+    {
+      "id": 1,
+      "pubmed_id": "29562516",
+      "tier": 2
+    },
+    {
+      "id": 2,
+      "pubmed_id": "27393344",
+      "tier": 2
+    },
+    {
+      "id": 3,
+      "pubmed_id": "20810476",
+      "tier": 2
+    }
+  ],
+  "tags": [
+    "mineral",
+    "thyroid",
+    "antioxidant",
+    "soil-depletion"
+  ],
+  "compliance_checks": {
+    "no_disease_claims": true,
+    "no_product_brands": true,
+    "no_personal_dosing": true,
+    "doctor_verified": true,
+    "sources_resolved": true,
+    "anchor_unique": true,
+    "disclaimer_present": true
+  },
+  "artifacts": {
+    "deep_dive_md": "deep-dive.md",
+    "share_card_html": "share-card.html",
+    "share_card_pdf": "share-card.pdf",
+    "carousel_html": [
+      "carousel/slide_01.html",
+      "carousel/slide_02.html",
+      "carousel/slide_03.html",
+      "carousel/slide_04.html"
+    ],
+    "carousel_png": [
+      "assets/slide_01.png",
+      "assets/slide_02.png",
+      "assets/slide_03.png",
+      "assets/slide_04.png"
+    ]
+  },
+  "urls": {},
+  "published_to": {
+    "substack": null,
+    "site": null,
+    "github_pages": null,
+    "instagram_post_id": null,
+    "instagram_scheduled_at": null,
+    "whatsapp_message_sids": [],
+    "email_recipients": 1
+  }
+}
