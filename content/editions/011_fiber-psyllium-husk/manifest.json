@@ -1,0 +1,79 @@
+{
+  "edition_id": "011",
+  "slug": "fiber-psyllium-husk",
+  "title": "Fiber of the Week — Psyllium: The Budget-Friendly Glucose Flattening Agent",
+  "category": "fiber",
+  "day_of_week": "Tuesday",
+  "eyebrow_label": "FIBER OF THE WEEK",
+  "accent_color": "#65a30d",
+  "published_at": "2026-05-14T01:25:11.335188+00:00",
+  "memory_anchor": "Psyllium is the cheapest, most-studied way to flatten a glucose spike — and it costs less than your morning chai.",
+  "lane": "curated_backlog",
+  "trend_override": false,
+  "doctor": {
+    "name": "Dr. V. Mohan",
+    "institution": "Madras Diabetes Research Foundation, Chennai",
+    "credentials": "MD, PhD, FRCP",
+    "publications": "600+",
+    "specialty_match": "glycemic control through fiber"
+  },
+  "sources": [
+    {
+      "id": 1,
+      "pubmed_id": "30401041",
+      "tier": 2
+    },
+    {
+      "id": 2,
+      "pubmed_id": "27999142",
+      "tier": 2
+    },
+    {
+      "id": 3,
+      "pubmed_id": "31499575",
+      "tier": 2
+    }
+  ],
+  "tags": [
+    "fiber",
+    "diabetes",
+    "cholesterol",
+    "indian-affordability"
+  ],
+  "compliance_checks": {
+    "no_disease_claims": true,
+    "no_product_brands": true,
+    "no_personal_dosing": true,
+    "doctor_verified": true,
+    "sources_resolved": true,
+    "anchor_unique": true,
+    "disclaimer_present": true
+  },
+  "artifacts": {
+    "deep_dive_md": "deep-dive.md",
+    "share_card_html": "share-card.html",
+    "share_card_pdf": "share-card.pdf",
+    "carousel_html": [
+      "carousel/slide_01.html",
+      "carousel/slide_02.html",
+      "carousel/slide_03.html",
+      "carousel/slide_04.html"
+    ],
+    "carousel_png": [
+      "assets/slide_01.png",
+      "assets/slide_02.png",
+      "assets/slide_03.png",
+      "assets/slide_04.png"
+    ]
+  },
+  "urls": {},
+  "published_to": {
+    "substack": null,
+    "site": null,
+    "github_pages": null,
+    "instagram_post_id": null,
+    "instagram_scheduled_at": null,
+    "whatsapp_message_sids": [],
+    "email_recipients": 1
+  }
+}
